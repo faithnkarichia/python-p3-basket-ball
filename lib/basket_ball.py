@@ -182,3 +182,153 @@ def game_dict():
             ]
         }
     }
+
+
+game=game_dict()
+
+def num_points_per_game(player_name):
+   
+    
+    for team in game.values():
+        for player in team["players"]:
+            if(player["name"]==player_name):
+                return player["points_per_game"]
+            
+    return "Player not found"
+print(num_points_per_game("Rui Hachimura"))
+print("should return 11.3 points")
+
+
+def player_age(player_name):
+    for team in game.values():
+        for player in team["players"]:
+            if(player["name"]==player_name):
+                return player["age"]
+print(player_age("Rui Hachimura"))
+print("age should be 25")
+
+
+def team_colors(team_name):
+    for team in game.values():
+        if(team_name==team["team_name"]):
+          return team["colors"]
+    
+print(team_colors("Washington Wizards"))
+
+
+def team_names():
+    names=[]
+    for team in game.values():
+         names.append(team["team_name"])
+    return names
+print(team_names())
+    
+def player_numbers(team_name):
+    jersey_number=[]
+    for team in game.values():
+        for player in team["players"]:
+            if(team_name==team["team_name"]):
+                jersey_number.append(player["number"]) 
+
+    return jersey_number
+
+print(player_numbers("Washington Wizards"))
+
+
+def player_stats(player_name):
+    for team in game.values():
+        for player in team["players"]:
+            if(player_name==player["name"]):
+              return player
+
+print(player_stats("Rui Hachimura"))
+
+
+def average_rebounds_by_shoe_brand(shoe_brand):
+    
+    rebounds=[]
+    the_shoe_brand=None
+
+    for team in game.values():
+        for player in team["players"]:
+            if(shoe_brand==player["shoe_brand"]):
+                rebounds.append(player["rebounds_per_game"])
+                the_shoe_brand=player["shoe_brand"]
+                
+                
+
+    average_rebounds=sum(rebounds)/len(rebounds)
+    print(f'"<{the_shoe_brand}>" : {average_rebounds:.2f}')
+
+average_rebounds_by_shoe_brand("Adidas")
+
+
+def most_career_points():
+    max_points=0
+    player_name=None
+    for team in game.values():
+        for player in team["players"]:
+            if(player["career_points"]>max_points):
+                max_points=player["career_points"]
+                player_name=player["name"]
+    print(f"{player_name} : {max_points}")
+most_career_points()
+
+
+
+
+
+
+def jersey_in_both_teams():
+    game = game_dict()
+    home_numbers = set()
+    away_numbers = set()
+    
+    for player in game["home"]["players"]:
+        home_numbers.add(player["number"])
+    
+    for player in game["away"]["players"]:
+        away_numbers.add(player["number"])
+    
+    duplicates = home_numbers.intersection(away_numbers)
+
+    if duplicates:
+        # convert to sorted list and join as a string
+        formatted = ", ".join(str(num) for num in sorted(duplicates))
+        print(f"Jersey numbers in both teams: {formatted}")
+    else:
+        print("No duplicate jersey numbers found.")
+
+jersey_in_both_teams()
+
+
+
+
+def longest_name():
+    longest_name_so_far = ""
+    
+    for team in game_dict().values():
+        for player in team["players"]:
+            if len(player["name"]) > len(longest_name_so_far):
+                longest_name_so_far = player["name"]
+
+    print(longest_name_so_far)
+
+longest_name()
+
+
+
+
+
+
+              
+
+    
+    
+
+
+
+
+
+
+
